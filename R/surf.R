@@ -8,10 +8,10 @@ KEY <- "_csrf"
 surf <- \() {
   \(req, res) {
 
-    secret <- req$cookie[[KEY]]
+    secret <- get_secret(req$cookie[[KEY]])
 
     req$csrf_token <- \(){
-      sec <- req$cookie[[KEY]]
+      sec <- get_secret(req$cookie[[KEY]])
 
       if(length(sec) == 0L){
         sec <- token_create()
@@ -78,4 +78,14 @@ get_param <- \(req) {
 
   cat("Missing", KEY, "token\n")  
   return(NULL)
+}
+
+get_secret <- \(cookie) {
+  if(is.null(cookie))
+    return()
+
+  if(is.character(cookie) && cookie == "")
+    return()
+
+  return(cookie)
 }
