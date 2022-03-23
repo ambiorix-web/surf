@@ -13,7 +13,7 @@ surf <- \() {
     req$csrf_token <- \(){
       sec <- req$cookie[[KEY]]
 
-      if(is.null(sec)){
+      if(length(sec) == 0L){
         sec <- token_create()
         res$cookie(
           KEY,
@@ -21,7 +21,7 @@ surf <- \() {
         )
       }
 
-      if(sec == secret)
+      if(!length(secret) == 0L && sec == secret)
         return(sec)
 
       secret <<- token_create()
