@@ -21,7 +21,7 @@ surf <- \() {
         )
       }
 
-      if(!length(secret) == 0L && sec == secret)
+      if(isTRUE(!length(secret) == 0L && sec == secret))
         return(sec)
 
       secret <<- token_create()
@@ -29,7 +29,7 @@ surf <- \() {
       return(secret)
     }
 
-    if(is.null(secret)){
+    if(isTRUE(length(secret) == 0L)){
       secret <- token_create()
       res$cookie(
         KEY,
