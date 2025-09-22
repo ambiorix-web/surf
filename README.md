@@ -28,7 +28,7 @@ Where you need this token it can be retrieved with
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("surf")
+remotes::install_github("ambiorix-web/surf")
 ```
 
 ## Example
